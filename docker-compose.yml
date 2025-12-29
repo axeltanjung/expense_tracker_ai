@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  db:
+    image: timescale/timescaledb:latest-pg14
+    ports: ["5432:5432"]
+    environment:
+      POSTGRES_DB: expense
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+
+  api:
+    build: ./backend
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+      
+  ml:
+    build: ./analytics
+    depends_on:
+      - db
