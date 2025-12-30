@@ -1,18 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from db import SessionLocal
+from backend.db import get_db
 from sqlalchemy import text
-from schemas import SpendInsight
+from backend.schemas import SpendInsight
 from pydantic import BaseModel
 
 router = APIRouter()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @router.get("/insights/spend", response_model=SpendInsight)
 def spend(user_id: str, db: Session = Depends(get_db)):
@@ -155,3 +148,7 @@ def regret_stats(user_id:str, db:Session=Depends(get_db)):
       FROM regret_events r JOIN transactions t ON r.txn_id=t.txn_id
       WHERE r.user_id=:u GROUP BY t.merchant ORDER BY cnt DESC
     """), {"u":user_id}).fetchall()
+
+@router.get("/__dbcheck")
+def dbcheck(db: Session = Depends(get_db)):
+    return db.execute(text("select inet_server_addr(), current_database()")).fetchone()
