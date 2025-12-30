@@ -1,25 +1,63 @@
-## Expense Tracker AI
+# 📊 Expense Tracker AI  
+### Personal Finance Intelligence Engine
 
-Personal Finance Intelligence Engine (not a CRUD app)
+> A predictive, behavior-aware personal finance engine built on time-series intelligence — not a CRUD tracker.
 
-Expense Tracker AI is a predictive, behavioral-aware personal finance engine built on time-series database, analytics views, and ML forecasting — designed to change financial trajectory, not just record spending.
+---
 
-Architecture Philosophy
+## 0️⃣ Why This Exists
+
+Most finance apps **observe** money.  
+Expense Tracker AI **models, predicts, and intervenes** on money behavior.
+
+| CRUD Tracker | Expense Tracker AI |
+|-------------|-------------------|
+| Logs expenses | Models financial dynamics |
+| Displays charts | Produces financial intelligence |
+| Static history | Predictive time-series reasoning |
+| No agency | Active behavioral control |
+
+---
+
+## 1️⃣ System Contract
+
 Database = Feature Store
-Backend  = Semantic API
-ML       = Intelligence Layer
-UI       = Visualization Only
+Backend = Semantic Intelligence API
+ML Layer = Forecasting & Anomaly Reasoning
+UI = Pure Visualization
 
-Tech Stack
-Layer	Tech
-DB	PostgreSQL + TimescaleDB
-Backend	FastAPI
-ML	Prophet, IsolationForest
-Feature Store	SQL Semantic Views
-Scheduler	Airflow
-UI	Next.js
-Infra	Docker
-Repo Structure
+
+No business logic is allowed in UI.  
+No ML logic is allowed in backend.  
+No features are allowed outside SQL views.
+
+---
+
+## 2️⃣ Architecture
+
+```mermaid
+graph TD
+    User --> UI
+    UI --> API
+    API -->|Semantic Queries| TimescaleDB
+    TimescaleDB -->|Feature Views| ML
+    ML -->|Predictions| API
+    API --> UI
+```
+
+## 3️⃣ Technology Stack
+
+| Layer          | Technology               |
+| -------------- | ------------------------ |
+| Time-Series DB | PostgreSQL + TimescaleDB |
+| Feature Store  | SQL Semantic Views       |
+| API            | FastAPI                  |
+| ML             | Prophet, IsolationForest |
+| Scheduler      | Airflow                  |
+| Infra          | Docker                   |
+| UI             | Next.js                  |
+
+## 4️⃣ Repository Layout
 expense_tracker_ai/
 │
 ├── docker-compose.yml
@@ -35,60 +73,55 @@ expense_tracker_ai/
 │   ├── insights.py
 │   └── schemas.py
 │
-└── ui/   (optional)
+└── ui/
 
-Quick Start
-1. Clone
+## 5️⃣ SQL Feature Store
+View	Financial Meaning
+spend_7d	Short-term burn
+spend_30d	Monthly lifestyle
+spend_90d	Structural lifestyle
+cash_velocity	Burn rate
+subscriptions_detect	Recurring leakage
+
+All views are model features, not reports.
+
+## 6️⃣ Intelligence Endpoints
+Endpoint	Purpose
+/insights/spend?user_id=	Multi-horizon burn modeling
+/insights/runway?user_id=	Cash runway estimation
+/insights/subscriptions	Subscription leakage
+/insights/risk (soon)	Payday survival
+
+## 7️⃣ ML Layer
+Model	Function
+Prophet	Spend & runway forecasting
+IsolationForest	Anomaly & leakage detection
+
+## 8️⃣ Roadmap
+Phase	Capability
+Phase 1	Semantic finance engine
+Phase 2	Forecasting + anomaly detection
+Phase 3	Behavioral nudging
+Phase 4	FIRE simulator
+
+##9️⃣ First Run
 git clone <repo_url>
 cd expense_tracker_ai
-
-2. Start Infra
 docker-compose up --build
 
 
-This will automatically:
-
-Boot TimescaleDB
-
-Create all tables & analytic views
-
-Start FastAPI intelligence engine
-
-API Documentation
-
-Open:
+API Docs:
 
 http://localhost:8000/docs
 
+🔬 Research Principle
 
-Available intelligence endpoints:
+Systems that only record money die.
+Systems that predict & change behavior compound.
 
-Endpoint	Purpose
-/insights/spend?user_id=	Multi-horizon spend
-/insights/runway?user_id=	Cash runway
-/insights/subscriptions	Subscription leakage
-/insights/risk (soon)	Payday survival
-Database as Feature Store
 
-All analytics live as SQL semantic views:
+---
 
-View	Purpose
-spend_7d	Short-term burn
-spend_30d	Monthly burn
-spend_90d	Structural lifestyle
-cash_velocity	Burn rate
-subscriptions_detect	Money leakage
-Roadmap
-Phase	Capability
-Phase 1	Semantic finance engine
-Phase 2	Forecasting & anomaly detection
-Phase 3	Behavioral nudging
-Phase 4	FIRE simulator
-Core Principle
+Now this is **actual Markdown**, notebook-safe, reproducible, and spec-grade.
 
-If your system only records money — it dies.
-If it predicts & changes behavior — it compounds.
-
-Author
-
-Built for engineers who want to build AI-first financial systems, not CRUD trackers.
+If you want, next we can formalize **financial state variables and equations** so your engine becom
