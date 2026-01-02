@@ -1,4 +1,4 @@
-# 📊 Expense Tracker AI  
+# 📊 Expense Trackers AI  
 ### Personal Finance Intelligence Engine
 
 > A predictive, behavior-aware personal finance engine built on time-series intelligence — not a CRUD tracker.
