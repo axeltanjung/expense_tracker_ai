@@ -20,7 +20,7 @@ Expense Tracker AI **models, predicts, and intervenes** on money behavior.
 ---
 
 ## 1️⃣ System Contract
-
+```
 Database = Feature Store
 Backend = Semantic Intelligence API
 ML Layer = Forecasting & Anomaly Reasoning
@@ -30,7 +30,7 @@ UI = Pure Visualization
 No business logic is allowed in UI.  
 No ML logic is allowed in backend.  
 No features are allowed outside SQL views.
-
+```
 ---
 
 ## 2️⃣ Architecture
@@ -58,7 +58,7 @@ graph TD
 | UI             | Next.js                  |
 
 ## 4️⃣ Repository Layout
-expense_tracker_ai/
+```expense_tracker_ai/
 │
 ├── docker-compose.yml
 ├── migrations/
@@ -74,6 +74,7 @@ expense_tracker_ai/
 │   └── schemas.py
 │
 └── ui/
+```
 
 ## 5️⃣ SQL Feature Store
 View	Financial Meaning
@@ -104,8 +105,8 @@ Phase 2	Forecasting + anomaly detection
 Phase 3	Behavioral nudging
 Phase 4	FIRE simulator
 
-##9️⃣ First Run
-git clone <repo_url>
+## 9️⃣ First Run
+git clone
 cd expense_tracker_ai
 docker-compose up --build
 
@@ -119,9 +120,3 @@ http://localhost:8000/docs
 Systems that only record money die.
 Systems that predict & change behavior compound.
 
-
----
-
-Now this is **actual Markdown**, notebook-safe, reproducible, and spec-grade.
-
-If you want, next we can formalize **financial state variables and equations** so your engine becom
